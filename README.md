@@ -4,9 +4,11 @@ A small program that plays Match Madness.
 
 **To use:**
 
-Clone the repository, then run `index.ts` with [Bun](https://bun.sh/).
+Clone the repository, then install dependencies and run `index.ts` with [Bun](https://bun.sh/).
 
 ```bash
+bun install
+
 bun index.ts
 ```
 
