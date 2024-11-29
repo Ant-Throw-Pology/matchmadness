@@ -74,26 +74,30 @@ if (process.argv.length > 2) {
         lastKeyTime = Date.now();
         if (ev.ctrl && key == "c") process.exit(0);
         if (singleTiles.includes(key)) {
+            originalLayout[layoutCursor[0]] ??= [];
             originalLayout[layoutCursor[0]][layoutCursor[1]] = key;
             layoutCursor[1]++;
-            originalLayout[layoutCursor[0]][layoutCursor[1]] ??= " ";
         } else if (key == "space") {
+            originalLayout[layoutCursor[0]] ??= [];
             originalLayout[layoutCursor[0]][layoutCursor[1]] = " ";
             layoutCursor[1]++;
-            originalLayout[layoutCursor[0]][layoutCursor[1]] ??= " ";
         } else if (key == "right") {
             layoutCursor[1]++;
+            originalLayout[layoutCursor[0]] ??= [];
             originalLayout[layoutCursor[0]][layoutCursor[1]] ??= " ";
         } else if (key == "left") {
             layoutCursor[1]--;
             if (layoutCursor[1] < 0) layoutCursor[1] = 0;
+            originalLayout[layoutCursor[0]] ??= [];
             originalLayout[layoutCursor[0]][layoutCursor[1]] ??= " ";
         } else if (key == "down") {
             layoutCursor[0]++;
+            originalLayout[layoutCursor[0]] ??= [];
             originalLayout[layoutCursor[0]][layoutCursor[1]] ??= " ";
         } else if (key == "up") {
             layoutCursor[0]--;
             if (layoutCursor[0] < 0) layoutCursor[0] = 0;
+            originalLayout[layoutCursor[0]] ??= [];
             originalLayout[layoutCursor[0]][layoutCursor[1]] ??= " ";
         } else if (key == "return") {
             if (layoutCursor[1] == 0 && layoutCursor[0] == originalLayout.length - 1) {
@@ -123,7 +127,7 @@ if (process.argv.length > 2) {
         process.stdin.resume();
     }
 
-    console.log("Enter your puzzle here. [Enter] for new line, [Space] for a blank space, arrows to move around if you made a mistake, and these keys for the tiles: " + Object.values(colorful).filter(v => v.length > 1).join(", ") + ". Focused tiles have bold text or a grey background.");
+    console.log("Enter your puzzle here. [Enter] for new line, [Space] for a blank space, arrows to move around if you made a mistake, and these keys for the tiles: " + Object.values(colorful).filter(v => v.length > 1).join(", ") + ". Focused tiles have bold text or a grey background. Press Enter twice at the end of the last line to solve the pattern.");
     printLayout();
 }
 
